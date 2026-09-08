@@ -28,8 +28,6 @@ a{color:inherit;text-decoration:none}
 button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
 :focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:6px}
 
-.devbar{background:#FFF4E0;color:#8A5A00;font-size:12.5px;font-weight:700;padding:9px 20px;text-align:center;line-height:1.5}
-.devbar b{color:#C97600}
 
 /* TOP CTA */
 .topcta{background:var(--navy);color:#fff;font-size:13.5px;font-weight:600;padding:11px 20px;text-align:center}
@@ -329,7 +327,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:44px 20px}
 </head>
 <body>
 
-<div class="devbar">v2.2 · 연동 경로 <b>4단계</b>로 확장 (직접 호출 → JSONP → ID → 백업) · 재시도 버튼 추가 · 블로그 = 네이버(<b>xupuniv</b>) 캐시 방식 — 강의·연구·경력 <b>텍스트는 아직 더미</b>임</div>
+
 
 <div class="topcta">조직의 교육체계, 지금 어디쯤 왔을까요? <a href="#consulting">컨설팅 문의 →</a></div>
 
@@ -361,6 +359,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:44px 20px}
       <a href="#contact" class="btn btn-p">강의 · 자문 문의하기</a>
       <a href="#lecture" class="btn btn-s">강의 이력 보기</a>
       <a href="#research" class="btn btn-s">수행 프로젝트 보기</a>
+      <a href="#blog" class="btn btn-s">최신 블로그 글 보기</a>
     </div>
   </div>
   <div class="dots" id="dots"></div>
@@ -514,7 +513,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:44px 20px}
     </div>
     <div class="f-bot">
       <div><b>서동인</b> · 교육학 박사</div>
-      <div>v2.2 · 2026-09-07 · made by Dongin Seo</div>
+      <div>v2.3 · 2026-09-07 · made by Dongin Seo</div>
     </div>
   </div>
 </footer>
@@ -1102,7 +1101,7 @@ const CATCLS = {};
 
   function render(list){
     box.innerHTML = "";
-    if(!list.length){ notice.innerHTML = '<div class="notice">아직 발행된 글이 없습니다. 첫 글을 준비 중입니다.</div>'; return; }
+    if(!list.length){ box.innerHTML = '<div class="bempty">아직 발행된 글이 없습니다.</div>'; return; }
     list.forEach(p => box.appendChild(card(p)));
     const home = blogHome();
     more.innerHTML = home
@@ -1112,15 +1111,15 @@ const CATCLS = {};
 
   function fallback(reason){
     if(settled) return; settled = true;
-    notice.innerHTML = `<div class="notice"><b>백업 목록 표시 중</b> — ${reason}<br>
-      아래 글은 실제 블로그 글이며 링크도 정상 작동합니다.
-      <button id="blogRetry" style="margin-left:6px;font-weight:800;color:#C97600;text-decoration:underline">다시 시도</button></div>`;
+    notice.innerHTML = "";
+    console.info("[블로그 연동] 피드 미응답 → 백업 목록 표시. 사유:", reason);
     render(DATA.fallbackPosts.slice(0, CONFIG.maxPosts).map(p => ({
       title:p.title, sm:p.sm, date:p.date.replace(/-/g,"."), labels:p.labels, url:p.url, thumb:null })));
   }
 
   function ok(label, n){
-    notice.innerHTML = `<div class="notice ok"><b>연동 성공</b> — ${label} 경로로 ${n}건을 불러왔습니다.</div>`;
+    notice.innerHTML = "";
+    console.info(`[블로그 연동] 성공 — ${label} 경로 / ${n}건`);
   }
 
   /* --- 1. 구글 블로거: JSONP --- */
@@ -1201,11 +1200,6 @@ const CATCLS = {};
     if(B.source !== "blogger"){ tryCache(); return; }
     tryFetchJson().then(done => { if(!done && !settled) tryBlogger(0); });
   }
-
-  // 안내 배너의 "다시 시도" 버튼
-  document.addEventListener("click", e => {
-    if(e.target && e.target.id === "blogRetry"){ more.innerHTML = ""; load(); }
-  });
 
   load();
 })();
