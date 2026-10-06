@@ -243,6 +243,35 @@ a.post:hover{box-shadow:var(--sh-h);transform:translateY(-3px)}
 .sk .l.s{width:55%}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
 
+/* INFOGRAPHICS */
+.infonote{font-size:14px;color:var(--g4);font-weight:500;margin:-6px 0 18px}
+.infogrid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.infocard{border:1px solid var(--g1);border-radius:20px;overflow:hidden;background:var(--w);
+  box-shadow:var(--sh);cursor:zoom-in;transition:box-shadow .2s,transform .2s;text-align:left;width:100%;padding:0;display:block}
+.infocard:hover{box-shadow:var(--sh-h);transform:translateY(-3px)}
+.infoimg{position:relative;height:320px;overflow:hidden;background:var(--g1)}
+.infoimg img{width:100%;display:block}
+.infoimg:after{content:"";position:absolute;left:0;right:0;bottom:0;height:120px;
+  background:linear-gradient(to bottom,rgba(255,255,255,0),rgba(255,255,255,.96))}
+.infometa{padding:18px 20px 20px;position:relative;z-index:2;margin-top:-28px}
+.infometa h4{font-size:17px;font-weight:800;letter-spacing:-.03em}
+.infometa p{font-size:13.5px;color:var(--g5);font-weight:500;line-height:1.6;margin-top:7px}
+.infometa .zoom{font-size:13px;font-weight:700;color:var(--blue);margin-top:12px;display:inline-block}
+
+.lbx{position:fixed;inset:0;background:rgba(10,15,25,.92);z-index:300;display:none;
+  align-items:flex-start;justify-content:center;padding:28px 20px;overflow-y:auto}
+.lbx.on{display:flex}
+.lbx img{max-width:min(880px,100%);width:100%;height:auto;border-radius:14px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lbx-close{position:fixed;top:20px;right:22px;width:46px;height:46px;border-radius:50%;
+  background:rgba(255,255,255,.18);color:#fff;font-size:24px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;z-index:310}
+.lbx-close:hover{background:rgba(255,255,255,.3)}
+@media (max-width:760px){
+  .infogrid{grid-template-columns:1fr}
+  .infoimg{height:260px}
+  .lbx{padding:16px 10px}
+}
+
 /* BOOKS */
 .bfeature{display:grid;grid-template-columns:240px minmax(0,1fr) 260px;gap:34px;align-items:start;
   border:1px solid var(--g1);border-radius:24px;padding:34px;box-shadow:var(--sh);background:var(--w)}
@@ -450,6 +479,12 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:44px 20px}
       <div class="h3">My Keywords</div>
       <div id="kwrows"></div>
     </div>
+
+    <div style="margin-top:48px">
+      <div class="h3">한눈에 보는 서동인</div>
+      <p class="infonote">일하는 방식과 사람을 만나는 규모를 인포그래픽으로 정리했습니다. 눌러서 크게 보실 수 있습니다</p>
+      <div class="infogrid" id="infographics"></div>
+    </div>
   </section>
 
   <section id="books">
@@ -575,6 +610,11 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:44px 20px}
 
 </main>
 
+<div class="lbx" id="lbx" role="dialog" aria-modal="true" aria-label="인포그래픽 확대 보기">
+  <button class="lbx-close" id="lbxClose" aria-label="닫기">×</button>
+  <img id="lbxImg" src="" alt="">
+</div>
+
 <footer>
   <div class="f-in">
     <div class="f-cols">
@@ -595,7 +635,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:44px 20px}
     </div>
     <div class="f-bot">
       <div><b>서동인</b> · 교육학 박사</div>
-      <div>v3.5 · 2026-10-06 · made by Dongin Seo</div>
+      <div>v3.6 · 2026-10-06 · made by Dongin Seo</div>
     </div>
   </div>
 </footer>
@@ -649,6 +689,14 @@ const DATA = {
     ],
     certs: ["평생교육사 2급", "창업지도사 2급", "정교사 2급"]
   },
+  // ───────── 인포그래픽 ─────────
+  infographics: [
+    {file:"info-manual", title:"서동인 사용설명서",
+     sub:"AI가 관찰한 일하는 방식 — 다시해, 이것만 바꿔, 원본 그대로. 디테일이 살 때까지 가는 작업 습관을 정리했습니다."},
+    {file:"info-reachmap", title:"Personal Reach Map",
+     sub:"한 해 동안 만나는 사람은 중간값 1,005명. 강의·특강·협업·새로운 만남이 만드는 영향력의 범위를 지도로 그렸습니다."}
+  ],
+
   // ───────── 저서 ─────────
   // status: "출간" | "출간예정" | "집필중"   feature:true → 상단 대표 카드
   books: [
@@ -1106,6 +1154,39 @@ const CATCLS = {};
     const t = el("div","it"); t.textContent = c.it;
     g.append(h,t); cb.appendChild(g);
   });
+})();
+
+/* 인포그래픽 + 확대 보기 */
+(function(){
+  const box = $("#infographics"), lbx = $("#lbx"), lbxImg = $("#lbxImg");
+  (DATA.infographics || []).forEach(g => {
+    const c = el("button","infocard");
+    c.setAttribute("aria-label", g.title + " 크게 보기");
+    const wrap = el("div","infoimg");
+    const im = el("img");
+    im.src = `assets/${g.file}-thumb.jpg`;
+    im.alt = g.title; im.loading = "lazy";
+    wrap.appendChild(im);
+    const meta = el("div","infometa");
+    const h = el("h4"); h.textContent = g.title;
+    const p = el("p"); p.textContent = g.sub;
+    const z = el("span","zoom"); z.textContent = "크게 보기";
+    meta.append(h,p,z);
+    c.append(wrap,meta);
+    c.onclick = () => {
+      lbxImg.src = `assets/${g.file}.jpg`;
+      lbxImg.alt = g.title;
+      lbx.classList.add("on");
+      document.body.style.overflow = "hidden";
+      lbx.scrollTop = 0;
+    };
+    box.appendChild(c);
+  });
+
+  function close(){ lbx.classList.remove("on"); document.body.style.overflow = ""; lbxImg.src = ""; }
+  $("#lbxClose").onclick = close;
+  lbx.onclick = e => { if(e.target === lbx || e.target === lbxImg) close(); };
+  document.addEventListener("keydown", e => { if(e.key === "Escape" && lbx.classList.contains("on")) close(); });
 })();
 
 /* 저서 + 독자 자료실 */
