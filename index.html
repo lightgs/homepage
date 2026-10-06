@@ -595,7 +595,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:44px 20px}
     </div>
     <div class="f-bot">
       <div><b>서동인</b> · 교육학 박사</div>
-      <div>v3.4 · 2026-10-06 · made by Dongin Seo</div>
+      <div>v3.5 · 2026-10-06 · made by Dongin Seo</div>
     </div>
   </div>
 </footer>
@@ -1195,7 +1195,7 @@ const CATCLS = {};
 
     w.append(cv,info,pw); fb.appendChild(w);
   } else {
-    fb.innerHTML = '<div class="bempty">등록된 저서가 없습니다.<br><span style="font-size:13px">DATA.books 배열에 정보를 넣으면 이 자리에 표시됩니다.</span></div>';
+    fb.innerHTML = '<div class="bempty">등록된 저서가 없습니다.</div>';
   }
 
   // 나머지 도서 목록
@@ -1262,8 +1262,7 @@ const CATCLS = {};
     box.innerHTML = "";
     const list = res.filter(r => (!activeBook || r.bookId === activeBook) && (active === "전체" || r.type === active));
     if(!list.length){
-      box.innerHTML = '<div class="bempty">자료는 출간에 맞춰 순차 공개됩니다.<br>' +
-        '<span style="font-size:13px">DATA.bookResources 배열에 {bookId, date, type, title, url}을 넣으면 이 목록에 표시됩니다.</span></div>';
+      box.innerHTML = '<div class="bempty">자료는 출간에 맞춰 순차 공개됩니다.</div>';
       return;
     }
     const head = el("div","bhead");
@@ -1287,8 +1286,7 @@ const CATCLS = {};
   const box = $("#articles");
   const list = (DATA.articles || []).slice().sort((a,b) => (b.date||"").localeCompare(a.date||""));
   if(!list.length){
-    box.innerHTML = '<div class="bempty">등록된 기고문이 아직 없습니다.<br>' +
-      '<span style="font-size:13px">DATA.articles 배열에 {date, media, title, url}을 넣으면 이 목록에 표시됩니다.</span></div>';
+    box.innerHTML = '<div class="bempty">등록된 기고문이 아직 없습니다.</div>';
     return;
   }
   const head = el("div","bhead");
