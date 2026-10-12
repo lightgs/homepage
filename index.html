@@ -294,7 +294,7 @@ a.pitem:hover .pt{color:var(--blue)}
 .blinks .soonmsg{font-size:13.5px;font-weight:700;color:var(--g4);padding:12px 0}
 .booklist{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
 .bcard{border:1px solid var(--g1);border-radius:18px;padding:20px;background:var(--w);box-shadow:var(--sh);display:flex;gap:16px}
-.bcard .mini{width:72px;flex:0 0 72px;aspect-ratio:3/4;border-radius:9px;background:linear-gradient(140deg,#0F2647,#1B64DA)}
+.bcard .mini{width:72px;flex:0 0 72px;aspect-ratio:3/4;border-radius:9px;background:linear-gradient(140deg,#0F2647,#1B64DA);background-size:cover;background-position:center}
 .bcard h4{font-size:15.5px;font-weight:800;line-height:1.45}
 .bcard .m{font-size:12.5px;color:var(--g4);font-weight:600;margin-top:6px}
 .resnote{font-size:13.5px;color:var(--g4);font-weight:600;margin:-8px 0 16px;line-height:1.6}
@@ -615,7 +615,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:44px 20px}
     </div>
     <div class="f-bot">
       <div><b>서동인</b> · 교육학 박사</div>
-      <div>v3.8 · 2026-10-09 · made by Dongin Seo</div>
+      <div>v3.9 · 2026-10-12 · made by Dongin Seo</div>
     </div>
   </div>
 </footer>
@@ -690,14 +690,14 @@ const DATA = {
      topics:["진로 설계","적성","AI 시대 역량","학부모","30일 프로그램"],
      links:[{t:"예스24에서 보기", url:"https://www.yes24.com/product/goods/197163280"}],
      resources:true},
-    {id:"vibe-edu", status:"집필중", feature:false,
+    {id:"vibe-edu", status:"출간예정", feature:false,
      title:"교육현장에서 바로 써먹는 바이브코딩",
      subtitle:"200번 갈아엎은 교육학 박사의 Claude 실전 레시피",
      authors:"서동인",
-     publisher:"", pubDate:"출간 준비 중", pages:"",
-     cover:"", coverGrad:"linear-gradient(145deg,#0F2647,#1B64DA)",
-     desc:"강의자료, 설문, 진단도구를 직접 만들어 쓰는 법. 200번 갈아엎으며 정리한 Claude 실전 레시피를 교육 현장 사례로 담았습니다.",
-     topics:["바이브코딩","Claude","교육도구 제작","AI 워크플로우"],
+     publisher:"", pubDate:"2026년 11월 출간 예정", pages:"",
+     cover:"assets/book-vibecoding.jpg", coverGrad:"linear-gradient(145deg,#0F2647,#1B64DA)",
+     desc:"개발 경력 0, 대화창 하나로 만든 도구 37개. 출결기와 조 편성부터 공문·계약서, 만족도 리포트, 링크만 보내면 쌓이는 강의자료 창고까지 — 200번 갈아엎으며 남긴 프롬프트 원문과 고친 기록을 그대로 담았습니다. 코드를 몰라도 내일 수업에서 바로 쓰는 실습서입니다.",
+     topics:["바이브코딩","Claude","교육도구 37개","프롬프트 원문","실습서"],
      links:[],
      resources:true}
   ],
