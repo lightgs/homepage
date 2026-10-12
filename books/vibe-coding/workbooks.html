@@ -1,0 +1,314 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>장별 워크북 · 교육현장에서 바로 써먹는 바이브코딩</title>
+<meta name="description" content="교육현장에서 바로 써먹는 바이브코딩 장별 워크북 모음">
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>:root{--blue:#3182F6;--blue-d:#1B64DA;--blue-l:#E8F3FF;--navy:#191F28;--g7:#333D4B;--g6:#4E5968;--g5:#6B7684;--g4:#8B95A1;--g3:#B0B8C1;--g2:#D1D6DB;--g1:#F2F4F6;--g0:#F9FAFB;--w:#fff;--green:#00C471;--green-l:#E7F9F1;--purple:#7C3AED;--purple-l:#F3EDFF;--sh:0 1px 3px rgba(0,0,0,.04),0 8px 24px rgba(0,0,0,.05);--max:960px}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Pretendard Variable',Pretendard,-apple-system,system-ui,sans-serif;background:var(--g0);color:var(--navy);line-height:1.55;letter-spacing:-.02em;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+.top{background:var(--navy);color:#fff;font-size:13.5px;font-weight:600;padding:11px 20px;text-align:center}
+.top a{color:#8FC0FF;font-weight:800;margin-left:8px}
+header.hd{background:var(--w);border-bottom:1px solid var(--g1);position:sticky;top:0;z-index:20}
+.hd .wrap{display:flex;align-items:center;justify-content:space-between;height:58px}
+.logo{font-size:16px;font-weight:800;letter-spacing:-.04em}
+.back{font-size:13.5px;font-weight:700;color:var(--g5)}
+.hero{padding:44px 0 4px}
+.lb{font-size:12px;font-weight:800;letter-spacing:.12em;color:var(--blue)}
+h1{font-size:30px;font-weight:800;letter-spacing:-.045em;margin:10px 0 8px}
+.sub{font-size:15px;color:var(--g5);font-weight:600}
+.meta{margin-top:12px;font-size:13px;color:var(--g4);font-weight:600}
+.note{background:var(--blue-l);border-radius:14px;padding:15px 18px;font-size:13.5px;color:var(--g7);font-weight:600;margin-top:20px;line-height:1.75}
+.filters{display:flex;flex-wrap:wrap;gap:7px;margin:8px 0 18px;position:sticky;top:58px;background:var(--g0);padding:14px 0 12px;z-index:10}
+.filters button{font-family:inherit;cursor:pointer;border:1px solid var(--g2);background:var(--w);color:var(--g6);font-size:13px;font-weight:700;padding:7px 13px;border-radius:999px}
+.filters button.on{background:var(--navy);color:#fff;border-color:var(--navy)}
+.card{background:var(--w);border-radius:18px;box-shadow:var(--sh);padding:24px 26px;margin-bottom:16px}
+.chead{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px}
+.cid{font-size:12.5px;font-weight:800;color:var(--blue);background:var(--blue-l);padding:3px 9px;border-radius:7px}
+.tag{font-size:11.5px;font-weight:800;padding:3px 9px;border-radius:7px;background:var(--g1);color:var(--g5)}
+.tag.b{background:var(--green-l);color:#00935A}
+.tag.a{background:var(--blue-l);color:var(--blue-d)}
+.tag.e{background:var(--purple-l);color:var(--purple)}
+h2.ct{font-size:19px;font-weight:800;letter-spacing:-.04em;margin:8px 0 2px;width:100%;line-height:1.4}
+.ot{font-size:14px;color:var(--g4);font-weight:700}
+.goal{border-left:3px solid var(--blue);padding:7px 0 7px 13px;margin:14px 0;font-size:14.5px;font-weight:700;color:var(--g7)}
+.prep{font-size:13.5px;color:var(--g4);font-weight:600}
+h3.sh{font-size:12.5px;font-weight:800;letter-spacing:.06em;color:var(--g4);margin:20px 0 8px;display:flex;align-items:center;gap:8px}
+h3.sh:after{content:"";flex:1;height:1px;background:var(--g1)}
+p{font-size:14.5px;color:var(--g6);line-height:1.75;margin:6px 0}
+ul{margin:6px 0 6px 2px;padding-left:17px}
+li{font-size:14px;color:var(--g6);line-height:1.75;margin:3px 0}
+table{width:100%;border-collapse:collapse;margin:8px 0;font-size:13.5px}
+td,th{border-bottom:1px solid var(--g1);padding:8px 10px;text-align:left;vertical-align:top;color:var(--g6)}
+tr td:first-child{font-weight:700;color:var(--g7);width:26%}
+th{font-weight:800;color:var(--navy);background:var(--g0)}
+.pre{position:relative;background:var(--navy);border-radius:14px;padding:18px 20px;margin:8px 0}
+.pre pre{font-family:'Pretendard Variable',Pretendard,system-ui,sans-serif;white-space:pre-wrap;word-break:break-word;color:#E8EDF3;font-size:13.5px;line-height:1.85;font-weight:500}
+.copy{position:absolute;top:12px;right:12px;font-family:inherit;cursor:pointer;border:0;background:rgba(255,255,255,.14);color:#fff;font-size:12px;font-weight:700;padding:6px 11px;border-radius:8px}
+.copy.done{background:var(--green)}
+b{font-weight:800;color:var(--g7)}
+footer{padding:40px 0 60px;text-align:center;font-size:12.5px;color:var(--g4);font-weight:600;line-height:1.9}
+.wb table td{height:32px}
+@media print{.top,.hd,.filters,.copy,.note,.back{display:none!important}body{background:#fff}.card{box-shadow:none;border:1px solid #ddd;page-break-inside:avoid;margin-bottom:12px}.hero{padding-top:0}}
+@media(max-width:600px){h1{font-size:24px}.card{padding:20px 18px}tr td:first-child{width:34%}}
+</style></head><body>
+<div class="top">교육현장에서 바로 써먹는 바이브코딩 · 독자 자료실<a href="../../index.html#books">저서로 돌아가기</a></div>
+<header class="hd"><div class="wrap"><div class="logo">서동인 · Dongin Seo</div><a class="back" href="../../index.html#books">← 독자 자료실</a></div></header>
+<div class="wrap"><div class="hero"><div class="lb">WORKBOOK</div><h1>장별 워크북</h1><p class="sub">내 업무로 바꿔 적어 보는 칸입니다. 인쇄해서 쓰셔도 됩니다</p><p class="meta">워크북 14개 · 1~15장 · 인쇄용 레이아웃 포함</p><div class="note">장이 끝날 때마다 나오는 <b>워크북 14개</b>를 모았습니다. 책에 바로 적으셔도 되고, 이 쪽을 인쇄하거나 PDF로 저장해 연수·스터디에서 나눠 쓰셔도 됩니다.<br>브라우저의 인쇄(Ctrl+P / Cmd+P)를 누르면 메뉴와 필터는 빠지고 워크북만 깨끗하게 출력됩니다.</div></div>
+<div class="filters" id="fl"><button class="on" data-k="all">전체 14개</button><button data-k="1장 교육자가 왜 지금 바이브코딩인가">1장</button><button data-k="2장 Claude 기본 기능">2장</button><button data-k="3장 Claude 셋팅과 저자의 작업 방식">3장</button><button data-k="5장 4 STEP 프롬프트 4요소">5장</button><button data-k="6장 수업 시간에 바로">6장</button><button data-k="7장 운영·행정 문서">7장</button><button data-k="8장 홍보와 모집">8장</button><button data-k="9장 강의 준비 기획 및 자동화">9장</button><button data-k="10장 운영과 행정 도구">10장</button><button data-k="11장 평가와 피드백">11장</button><button data-k="12장 데이터 대시보드와 보고">12장</button><button data-k="13장 에이전트에게 일 맡기기">13장</button><button data-k="14장 연수 설계와 도입 로드맵">14장</button><button data-k="15장 배포와 보안">15장</button></div>
+<div class="card wb" data-ch="1장 교육자가 왜 지금 바이브코딩인가" data-lv="">
+<div class="chead"><span class="cid">1장</span><h2 class="ct">내 업무에서 첫 재료 찾기</h2></div>
+<p><b>1. 내가 반복하는 업무 5개를 적어 보세요</b> (위 6단계 표를 참고 · 첫 줄은 예시)</p>
+<table>
+<tr><th>#</th><th>업무</th><th>반복</th><th>접근성</th><th>빈도</th><th>중요도</th><th>판단 요구</th></tr>
+<tr><td>예</td><td>개강 안내 문자·공지 쓰기</td><td><b>상</b> · 하</td><td><b>상</b> · 하</td><td><b>상</b> · 하</td><td>상 · <b>하</b></td><td>상 · <b>하</b></td></tr>
+<tr><td>1</td><td></td><td>상 · 하</td><td>상 · 하</td><td>상 · 하</td><td>상 · 하</td><td>상 · 하</td></tr>
+<tr><td>2</td><td></td><td>상 · 하</td><td>상 · 하</td><td>상 · 하</td><td>상 · 하</td><td>상 · 하</td></tr>
+<tr><td>3</td><td></td><td>상 · 하</td><td>상 · 하</td><td>상 · 하</td><td>상 · 하</td><td>상 · 하</td></tr>
+<tr><td>4</td><td></td><td>상 · 하</td><td>상 · 하</td><td>상 · 하</td><td>상 · 하</td><td>상 · 하</td></tr>
+<tr><td>5</td><td></td><td>상 · 하</td><td>상 · 하</td><td>상 · 하</td><td>상 · 하</td><td>상 · 하</td></tr>
+</table>
+<p><b>2. 첫 도구로 고를 1~2개에 ○</b> — 기준: 반복·접근성·빈도는 <b>높고(상)</b>, 중요도·판단 요구는 <b>낮은(하)</b> 일</p>
+<p><b>3. 그 일이 지금 걸리는 시간</b> ( )분 → 목표 ( )분</p>
+</div>
+<div class="card wb" data-ch="2장 Claude 기본 기능" data-lv="">
+<div class="chead"><span class="cid">2장</span><h2 class="ct">내 업무에 쓸 기능 고르기</h2></div>
+<p>1장에서 고른 업무 1~2개에 필요한 기능을 체크하세요.</p>
+<table>
+<tr><th>기능</th><th>업무 1</th><th>업무 2</th><th>업무 3</th></tr>
+<tr><td>프로젝트</td><td>☐</td><td>☐</td><td>☐</td></tr>
+<tr><td>아티팩트 (HTML 도구)</td><td>☐</td><td>☐</td><td>☐</td></tr>
+<tr><td>문서·슬라이드·파일</td><td>☐</td><td>☐</td><td>☐</td></tr>
+<tr><td>커넥터 (노션·드라이브·캘린더)</td><td>☐</td><td>☐</td><td>☐</td></tr>
+<tr><td>폴더 작업</td><td>☐</td><td>☐</td><td>☐</td></tr>
+</table>
+<p><b>체크가 가장 적은 업무가 첫 도구입니다.</b> 기능이 적게 필요할수록 쉽게 성공합니다.</p>
+</div>
+<div class="card wb" data-ch="3장 Claude 셋팅과 저자의 작업 방식" data-lv="">
+<div class="chead"><span class="cid">3장</span><h2 class="ct">나의 지침과 첫 프로젝트</h2></div>
+<p><b>1. 나의 Global 지침 5줄</b></p>
+<ul>
+<li>나는 ________________________________ (직무·대상·과목)</li>
+<li>결과물은 ______________________________ (형식)</li>
+<li>디자인은 ______________________________ (좋아하는 서비스)</li>
+<li>모르면 모른다고, 가정은 [가정]이라고 표시</li>
+<li>모든 결과물에 제작 날짜와 버전 표기</li>
+</ul>
+<p><b>2. 내 업무 영역 = 프로젝트 = 폴더</b> (3~5개)</p>
+<table>
+<tr><th>영역</th><th>프로젝트·폴더 이름</th><th>하위 폴더 (단계별)</th></tr>
+<tr><td></td><td>`[   ]`</td><td></td></tr>
+<tr><td></td><td>`[   ]`</td><td></td></tr>
+<tr><td></td><td>`[   ]`</td><td></td></tr>
+</table>
+<p><b>3. 첫 프로젝트의 Local 지침 3줄</b> (대상 · 자료 · 금지할 것)</p>
+<p><b>4. 나의 디자인 시스템 3줄</b> — 색 ________ · 글꼴 ________ · 모양(카드/표) ________</p>
+<p><b>5. 스킬로 만들고 싶은 반복 절차 1개</b> ______________________________</p>
+</div>
+<div class="card wb" data-ch="5장 4 STEP 프롬프트 4요소" data-lv="">
+<div class="chead"><span class="cid">5장</span><h2 class="ct">고른 업무로 PRD 1장</h2></div>
+<table>
+<tr><th>칸</th><th>내 업무: ______________________</th></tr>
+<tr><td>무엇을</td><td></td></tr>
+<tr><td>누구에게</td><td></td></tr>
+<tr><td>왜</td><td></td></tr>
+<tr><td>입력</td><td></td></tr>
+<tr><td>출력</td><td></td></tr>
+<tr><td>검증 규칙</td><td></td></tr>
+</table>
+<p><b>프롬프트 4요소로 옮기기</b></p>
+<ul>
+<li>역할: 너는 ________________ 야.</li>
+<li>[맥락] ________________________________</li>
+<li>[자료] ________________________________</li>
+<li>[기준] ________________________________</li>
+<li>[출력] ________________________________</li>
+</ul>
+</div>
+<div class="card wb" data-ch="6장 수업 시간에 바로" data-lv="">
+<div class="chead"><span class="cid">6장</span><h2 class="ct">내 수업용 도구 하나</h2></div>
+<p><b>1. 이 장에서 바로 써 볼 도구</b> ☐ 추첨기 ☐ 조 편성기 ☐ 퀴즈</p>
+<p><b>2. R01 프롬프트를 내 수업으로 고쳐 쓰기</b></p>
+<ul>
+<li>역할: 너는 ________________________ 야.</li>
+<li>[맥락] 우리 수업은 ______________________ (대상·인원·장소)</li>
+<li>[자료] ______________________________ (명단·교재·계획서)</li>
+<li>[기준] ① ______________ ② ______________ ③ ______________</li>
+<li>[출력] ______________________________</li>
+</ul>
+<p><b>3. 결과 점검</b> ☐ 파일 하나로 열린다 ☐ 빔프로젝터 뒷자리에서 보인다 ☐ 학생 실명이 화면에 남지 않는다 ☐ 파일명에 v1과 날짜를 붙였다</p>
+<p><b>4. 80% to 100%장</b> — 증상 → 원인 → 고친 말 → 저장한 버전</p>
+</div>
+<div class="card wb" data-ch="7장 운영·행정 문서" data-lv="">
+<div class="chead"><span class="cid">7장</span><h2 class="ct">매번 다시 쓰는 문서 1개 고르기</h2></div>
+<p><b>1. 지난 한 학기(한 기수) 동안 두 번 이상 처음부터 다시 쓴 문서</b></p>
+<table>
+<tr><th>문서</th><th>몇 번 썼나</th><th>매번 걸린 시간</th><th>바뀌는 부분</th><th>안 바뀌는 부분</th></tr>
+</table>
+<p><b>2. 그중 하나를 골라 [자료]로 넣을 것 적기</b> ______________________</p>
+<p><b>3. AI에게 맡기지 않고 반드시 사람이 확인할 것</b> (법령·금액·개인정보·서명) ☐ ______________ ☐ ______________ ☐ ______________</p>
+<p><b>4. 저장 위치 정하기</b> ☐ 내 컴퓨터만 ☐ 팀 공유 드라이브 ☐ 홈페이지 공개</p>
+</div>
+<div class="card wb" data-ch="8장 홍보와 모집" data-lv="">
+<div class="chead"><span class="cid">8장</span><h2 class="ct">우리 기관 디자인 기준 1장</h2></div>
+<p><b>1. 보기 편하다고 느낀 서비스·기관 하나</b> ______________________ (캡처 1장 준비)</p>
+<p><b>2. 우리 기관 기준</b></p>
+<table>
+<tr><th>항목</th><th>정하기</th></tr>
+<tr><td>포인트 색 (1개)</td><td></td></tr>
+<tr><td>글꼴 (제목 / 본문)</td><td></td></tr>
+<tr><td>로고 위치</td><td></td></tr>
+<tr><td>반드시 들어갈 것 (문의처·마감일·QR 등)</td><td></td></tr>
+<tr><td>쓰지 않을 것 (외래어·작은 글씨 등)</td><td></td></tr>
+</table>
+<p><b>3. 이 기준을 3장의 Global 또는 Local 지침에 붙여 넣기</b> ☐ 완료</p>
+<p><b>4. 다음 홍보물 하나를 이 기준으로 만들고 v1.0 붙이기</b> ☐ 완료</p>
+</div>
+<div class="card wb" data-ch="9장 강의 준비 기획 및 자동화" data-lv="">
+<div class="chead"><span class="cid">9장</span><h2 class="ct">다음 학기 강의 1회차 설계</h2></div>
+<p><b>1. 나만의 강의자판기 선택지</b></p>
+<table>
+<tr><th>단계</th><th>내 선택지 (쉼표로)</th></tr>
+<tr><td>대상</td><td></td></tr>
+<tr><td>주제 (분야 → 주제)</td><td></td></tr>
+<tr><td>형태</td><td></td></tr>
+<tr><td>운영조건 (시간·인원·장소)</td><td></td></tr>
+</table>
+<p><b>2. 1회차를 거꾸로 설계하기</b></p>
+<ul>
+<li>바라는 결과: 1회차가 끝나면 학습자는 ______________________ 할 수 있다</li>
+<li>증거: 그것을 ______________________ (질문·과제·발표)로 확인한다</li>
+<li>활동: 그래서 수업에서 ______________________ 을 한다</li>
+<li>2회차 첫 장 복습 질문: ______________________________</li>
+</ul>
+<p><b>3. 1회차 자료 점검</b> ☐ 기관 색·글꼴·로고를 디자인 시스템으로 등록 ☐ 슬라이드 한 장에 메시지 하나 ☐ 1회차 확정 뒤 2회차 요청 ☐ PPTX·PDF로 내보내고 파일명에 v1.0과 날짜</p>
+<p><b>4. 우리 반 학습자 미리 보기</b></p>
+<ul>
+<li>수강생 구성 (학과·직무·경력): ______________________</li>
+<li>페르소나 3명에게 붙일 이름: ________ / ________ / ________</li>
+<li>지난 기수 여정 지도에서 가장 낮았던 단계: ________ → 이번 1회차에서 바꿀 것: ______________</li>
+</ul>
+</div>
+<div class="card wb" data-ch="10장 운영과 행정 도구" data-lv="">
+<div class="chead"><span class="cid">10장</span><h2 class="ct">계산식 하나, 스킬 하나</h2></div>
+<p><b>1. 우리 과정의 수료 기준을 계산식으로</b> — 규정 문장을 그대로 옮긴 뒤 식으로 바꿉니다</p>
+<table>
+<tr><th>항목</th><th>규정 문장</th><th>계산식</th></tr>
+<tr><td>총 회차 · 지각·조퇴</td><td></td><td>예: 출석 + 지각 − (지각 ÷ 2의 몫)</td></tr>
+<tr><td>공결 · 과제·시험</td><td></td><td></td></tr>
+<tr><td>경계값</td><td></td><td>예: 8회 &#x27;이상&#x27; · 반올림 없음</td></tr>
+</table>
+<p><b>2. 가명 ID 5명으로 검산</b> — 경계값에 걸린 사람 1명을 꼭 넣고 손 계산과 대조 ☐ Claude에는 가명 ID만 넣었다 ☐ 실명 연결·수료증 출력은 기관 PC에서 했다</p>
+<p><b>3. 매번 다시 쓰는 문서 1개를 스킬로</b> — 문서 이름 ____________ · 한 해 ______ 번</p>
+<table>
+<tr><th>칸</th><th>내 문서</th><th>예 (공문 스킬)</th></tr>
+<tr><td>쓰기 전에 물을 질문 3개</td><td></td><td>분량 · 문체 · 중점</td></tr>
+<tr><td>꼭 지킬 서식</td><td></td><td>제목 문단 · 붉은 테두리 표</td></tr>
+<tr><td>하지 말 것</td><td></td><td>원자료에 없는 숫자 쓰기</td></tr>
+<tr><td>다 쓴 뒤 점검</td><td></td><td>쪽수 · 서식 · [확인 필요] 개수</td></tr>
+</table>
+<p><b>4. 고친 기록</b> — v1.0 ______ / v1.1 ______ (날짜 · 고친 규칙 한 줄) ☐ 이름만 불러 같은 결과가 두 번 나왔다 ☐ 고칠 때마다 판 번호·날짜를 남겼다</p>
+</div>
+<div class="card wb" data-ch="11장 평가와 피드백" data-lv="">
+<div class="chead"><span class="cid">11장</span><h2 class="ct">진단 문항과 피드백 기준</h2></div>
+<p><b>1. 무엇을 진단하나</b> ______________________ → 결과를 읽는 사람 ☐ 학습자 ☐ 강사 ☐ 학부모 ☐ 기관</p>
+<p><b>2. 문항 5개</b></p>
+<table>
+<tr><th>번호</th><th>문항</th><th>재는 것 (유형·지표)</th><th>척도</th><th>역문항</th></tr>
+<tr><td>1</td><td></td><td></td><td>☐ 5점 ☐ 4점 ☐ 정답형</td><td>☐</td></tr>
+<tr><td>2</td><td></td><td></td><td>☐ 5점 ☐ 4점 ☐ 정답형</td><td>☐</td></tr>
+<tr><td>3</td><td></td><td></td><td>☐ 5점 ☐ 4점 ☐ 정답형</td><td>☐</td></tr>
+<tr><td>4</td><td></td><td></td><td>☐ 5점 ☐ 4점 ☐ 정답형</td><td>☐</td></tr>
+<tr><td>5</td><td></td><td></td><td>☐ 5점 ☐ 4점 ☐ 정답형</td><td>☐</td></tr>
+</table>
+<p><b>3. 채점 규칙</b></p>
+<ul>
+<li>유형별 합산: ________형 = 문항 ___, ___ / ________형 = 문항 ___, ___</li>
+<li>경계 점수: ____점 ± ___점은 &#x27;강사 판단&#x27;</li>
+<li>결과 문장: &quot;당신은 ○○형&quot; 대신 &quot;지금 ______________ 경향이 있습니다&quot;</li>
+</ul>
+<p><b>4. 공개 전 점검</b> ☐ 손 채점 3명분과 자동 채점이 같다 ☐ 시트에는 이름 없이 ID만 남는다 ☐ 출판된 진단지라면 저작권을 확인했다 ☐ 결과 요약을 붙일 다음 기수 PRD를 정했다</p>
+<p><b>5. 과제 피드백 준비</b></p>
+<ul>
+<li>루브릭 기준 ______ 개 · 배점 합계 ______ 점</li>
+<li>☐ 보고서는 가명 ID로 바꿔 넣기 ☐ 점수는 내가 매기기 ☐ &#x27;근거 없음&#x27;이 나온 기준은 원문을 직접 확인</li>
+</ul>
+</div>
+<div class="card wb" data-ch="12장 데이터 대시보드와 보고" data-lv="">
+<div class="chead"><span class="cid">12장</span><h2 class="ct">내 대시보드에 들어갈 숫자 4개</h2></div>
+<p><b>1. 누가, 언제 보는 화면인가</b></p>
+<ul>
+<li>보는 사람: ☐ 기관장 ☐ 운영 담당자 ☐ 강사·조교 ☐ 외부(위탁 기관·임원)</li>
+<li>보는 때: ☐ 매일 ☐ 주간 회의 ☐ 분기 점검 ☐ 사업 종료 보고</li>
+</ul>
+<p><b>2. 숫자 4개 정하기</b></p>
+<table>
+<tr><th>숫자</th><th>계산 방법</th><th>원자료 위치(시트·열)</th><th>주의 기준(주황·빨강)</th></tr>
+<tr><td>1.</td><td></td><td></td><td></td></tr>
+<tr><td>2.</td><td></td><td></td><td></td></tr>
+<tr><td>3.</td><td></td><td></td><td></td></tr>
+<tr><td>4.</td><td></td><td></td><td></td></tr>
+</table>
+<p><b>3. 개인정보 점검</b> ☐ 화면에 쓰는 탭·파일에 이름·연락처 열이 없다 ☐ 10명(또는 20건) 미만 집단은 합치거나 &#x27;참고&#x27;로 표시했다 ☐ 게시 주소·공유 링크를 누가 볼 수 있는지 확인했다 ☐ 색은 &#x27;신호&#x27;일 뿐, 판정은 사람이 한다고 화면에 적었다</p>
+<p><b>4. 다시 쓰기 준비</b> ☐ 원자료 열 이름을 고정하고 Local 지침에 적었다 ☐ 화면에 기준일·마지막 갱신 시각이 보인다 ☐ 파일명에 v1과 날짜를 붙였다</p>
+</div>
+<div class="card wb" data-ch="13장 에이전트에게 일 맡기기" data-lv="">
+<div class="chead"><span class="cid">13장</span><h2 class="ct">우리 기관 에이전트 역할표</h2></div>
+<p><b>1. 맡길 일 고르기</b></p>
+<ul>
+<li>반복되는 일 3가지: ① __________ ② __________ ③ __________</li>
+<li>☐ 매주·매 기수·매 학기 되풀이된다 ☐ 초안만 있어도 시간이 준다 ☐ 결과를 사람이 확인할 수 있다 ☐ 개인정보 없이도 할 수 있다</li>
+</ul>
+<p><b>2. 역할표 (에이전트 2~4개)</b></p>
+<table>
+<tr><th>에이전트 이름·색</th><th>맡는 일(과업)</th><th>늘 참고할 자료</th><th>내놓는 것(초안)</th><th>하지 않는 일</th><th>확인·승인하는 사람</th></tr>
+<tr><td>1.</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>2.</td><td></td><td></td><td></td><td></td><td></td></tr>
+<tr><td>3.</td><td></td><td></td><td></td><td></td><td></td></tr>
+</table>
+<p><b>3. 첫 화면 예시 질문 (에이전트 하나 골라 3개)</b></p>
+<ul>
+<li>① __________ ② __________ ③ __________</li>
+</ul>
+<p><b>4. 사람이 쥐고 있을 것</b> ☐ 보내기·제출·판정·확정은 사람이 한다 ☐ 학습자 정보는 넣지 않거나 가명 ID로만 ☐ 지침을 고칠 관리자 1명과 점검 날짜를 정했다 ☐ 공개 범위 _____ 단계 (15장) ☐ 사용 비용을 누가 내는지 확인했다</p>
+</div>
+<div class="card wb" data-ch="14장 연수 설계와 도입 로드맵" data-lv="">
+<div class="chead"><span class="cid">14장</span><h2 class="ct">우리 기관 3개월 도입 계획표</h2></div>
+<p><b>1. 우리 기관</b> ☐ 학교 ☐ 평생교육기관 ☐ 대학 ☐ 학원 ☐ 기업 교육 ☐ 기타 __________</p>
+<ul>
+<li>함께 시작할 사람(2명 이상): ______________ / ______________</li>
+<li>기관 보안·개인정보 담당자: ______________ (만날 날: ____월 ____일)</li>
+</ul>
+<p><b>2. 3개월 계획</b></p>
+<table>
+<tr><th></th><th>1개월 차 · 셋팅과 기본</th><th>2개월 차 · 내 자료로 심화</th><th>3개월 차 · 공유와 규칙</th></tr>
+<tr><td>덜어 낼 업무</td><td></td><td></td><td></td></tr>
+<tr><td>만들 도구</td><td></td><td></td><td></td></tr>
+<tr><td>넣을 자료</td><td></td><td></td><td></td></tr>
+<tr><td>공개 범위 (1~5단계)</td><td></td><td></td><td></td></tr>
+<tr><td>달 끝에 손에 남는 것</td><td></td><td></td><td></td></tr>
+</table>
+<p><b>3. 3개월 차 점검</b> ☐ PRD와 프롬프트가 공유 폴더에 있다 ☐ 담당자가 2명 이상이다 ☐ 기관 공용 지침(Local)을 만들었다 ☐ 15장 체크리스트 10을 통과했다 ☐ 다음 3개월에 올라갈 칸을 정했다</p>
+</div>
+<div class="card wb" data-ch="15장 배포와 보안" data-lv="">
+<div class="chead"><span class="cid">15장</span><h2 class="ct">내보내기 전 체크리스트 10</h2></div>
+<p>하나라도 비어 있으면 공개 단계를 한 칸 올림 (예: 4단계 → 3단계)</p>
+<ul>
+<li>☐ 1. 이 도구가 사다리 몇 단계인지 정했다 (_____ 단계)</li>
+<li>☐ 2. 화면·파일·코드 어디에도 실명·연락처·학번이 없다</li>
+<li>☐ 3. API 키·비밀번호·관리자 주소가 코드에 없다</li>
+<li>☐ 4. 첨부 파일·하위 페이지·숨은 탭·차트 원자료까지 확인했다</li>
+<li>☐ 5. 링크가 다시 퍼져도 괜찮은 내용이다</li>
+<li>☐ 6. 필요 없으면 검색 노출을 껐다</li>
+<li>☐ 7. 응답을 모은다면 수집 항목·목적·보관 기간을 첫 화면에 적었다</li>
+<li>☐ 8. 관리자 화면·원자료는 나만 볼 수 있다</li>
+<li>☐ 9. 기관 보안 지침과 담당 부서를 확인했다</li>
+<li>☐ 10. 화면 아래에 버전·날짜·문의처를 적고, 내릴 날짜를 정했다</li>
+</ul>
+</div></div><footer>교육현장에서 바로 써먹는 바이브코딩 · 서동인<br>모델 이름과 화면은 바뀝니다. 프롬프트의 [기준]과 [출력]만 내 상황에 맞게 고쳐 쓰시면 됩니다.<br>최종 업데이트 2026-10-12 · made by Dongin Seo</footer>
+<script>
+document.addEventListener("click",function(e){var b=e.target.closest(".copy");if(!b)return;var t=b.parentElement.querySelector("pre").innerText;navigator.clipboard.writeText(t).then(function(){b.textContent="복사됨";b.classList.add("done");setTimeout(function(){b.textContent="복사";b.classList.remove("done");},1600);});});
+var fl=document.getElementById("fl");
+if(fl){fl.addEventListener("click",function(e){var b=e.target.closest("button");if(!b)return;Array.prototype.forEach.call(fl.children,function(x){x.classList.remove("on")});b.classList.add("on");var k=b.dataset.k;Array.prototype.forEach.call(document.querySelectorAll("[data-ch]"),function(c){c.style.display=(k==="all"||c.dataset.ch===k||c.dataset.lv===k)?"":"none";});});}
+</script></body></html>

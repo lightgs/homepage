@@ -692,9 +692,9 @@ const DATA = {
      resources:true},
     {id:"vibe-edu", status:"출간예정", feature:false,
      title:"교육현장에서 바로 써먹는 바이브코딩",
-     subtitle:"200번 갈아엎은 교육학 박사의 Claude 실전 레시피",
+     subtitle:"200번 갈아엎은 교육학 박사의 Claude 레시피",
      authors:"서동인",
-     publisher:"", pubDate:"2026년 11월 출간 예정", pages:"",
+     publisher:"부크크", pubDate:"2026년 11월 출간 예정", pages:"179쪽 · A4",
      cover:"assets/book-vibecoding.jpg", coverGrad:"linear-gradient(145deg,#0F2647,#1B64DA)",
      desc:"개발 경력 0, 대화창 하나로 만든 도구 37개. 출결기와 조 편성부터 공문·계약서, 만족도 리포트, 링크만 보내면 쌓이는 강의자료 창고까지 — 200번 갈아엎으며 남긴 프롬프트 원문과 고친 기록을 그대로 담았습니다. 코드를 몰라도 내일 수업에서 바로 쓰는 실습서입니다.",
      topics:["바이브코딩","Claude","교육도구 37개","프롬프트 원문","실습서"],
@@ -712,6 +712,21 @@ const DATA = {
   // 독자 자료실 — bookId로 책과 연결. type은 자유롭게 추가 가능
   bookResources: [
     // {bookId:"career-note", date:"2026-10-10", type:"워크시트", title:"진로 대화 질문 카드 20", url:"https://...", note:"PDF"}
+    // 「교육현장에서 바로 써먹는 바이브코딩」 독자 자료실 (원고 v8.4 · 사례 37개 기준)
+    {bookId:"vibe-edu", date:"2026-10-12", type:"프롬프트", title:"사례 37개 프롬프트 원문 모음 · PRD 1장과 80% to 100% 기록 포함 (6~13장)", url:"books/vibe-coding/prompts.html", note:"복사용 · 장·난이도별 보기"},
+    {bookId:"vibe-edu", date:"2026-10-12", type:"워크북", title:"장별 워크북 14개 전체 세트 (1~15장)", url:"books/vibe-coding/workbooks.html", note:"인쇄용 레이아웃"},
+    {bookId:"vibe-edu", date:"", type:"최신 정보", title:"지금의 셋팅 · 모델 이름·요금제·메뉴 위치 (2·3장)", url:"", note:"수시 갱신"},
+    {bookId:"vibe-edu", date:"", type:"체험판", title:"실제 도구 열어 보기 · 강의실 도구·퀴즈·강의자판기·수료 판정·진단·대시보드 (6·9~12장)", url:"", note:"HTML"},
+    {bookId:"vibe-edu", date:"", type:"체험판", title:"교육사업 제안서 제작기 · 강연 홍보 랜딩페이지 예시 (10장 N17 · 8장 R31)", url:"", note:"HTML"},
+    {bookId:"vibe-edu", date:"", type:"변천 기록", title:"포스터 v1.0 → v1.4 고쳐 온 과정 (8장)", url:"", note:"이미지"},
+    {bookId:"vibe-edu", date:"", type:"설치 안내", title:"강의알잘딱 · Hermes 설치와 노션 강의자료 DB 양식 (13장 R20)", url:"", note:"수시 갱신"},
+    {bookId:"vibe-edu", date:"", type:"설치 안내", title:"Apps Script로 HTML과 구글 시트 잇기 · 코드 예시와 설치 순서 (부록 D)", url:"", note:"수시 갱신"},
+    {bookId:"vibe-edu", date:"", type:"양식", title:"교육용 PRD 1장 양식 · 빈 양식과 채운 예 (부록 A)", url:"", note:"PDF"},
+    {bookId:"vibe-edu", date:"", type:"템플릿", title:"Global·Local 지침 · 프롬프트 4요소 · 잡도리 스킬 3문장 (부록 B)", url:"", note:"복사용 텍스트"},
+    {bookId:"vibe-edu", date:"", type:"체크리스트", title:"내보내기 전 체크리스트 10 · 쓰기 전에 꼭 확인할 10가지 (15장)", url:"", note:"PDF"},
+    {bookId:"vibe-edu", date:"", type:"강의자료", title:"연수 시간표 예시 · 3개월 도입 계획표 (14장)", url:"", note:"PDF"},
+    {bookId:"vibe-edu", date:"", type:"법·정책", title:"배포·보안·점검표 근거 법령과 기준일 갱신 (15장)", url:"", note:"수시 갱신"},
+    {bookId:"vibe-edu", date:"", type:"정오표", title:"정오표", url:"", note:"출간 후"},
   ],
 
   keywords: [
@@ -1278,7 +1293,9 @@ const CATCLS = {};
 
   // 책이 2권 이상이면 책 단위로 먼저 나누고, 그 안에서 분류로 거름
   const titleOf = id => (valid.find(b => b.id === id) || {}).title || id;
-  let activeBook = resBooks.length > 1 ? resBooks[0].id : null;
+  // 자료가 실제로 있는 책을 기본으로 선택
+  const withRes = resBooks.filter(b => res.some(r => r.bookId === b.id));
+  let activeBook = resBooks.length > 1 ? ((withRes[0] || resBooks[0]).id) : null;
   let active = "전체";
   new Set(res.map(r => r.type)).forEach((t,i) => { RTCLS[t] = "rt-"+Math.min(i+1,5); });
 
