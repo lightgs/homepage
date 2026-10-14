@@ -258,8 +258,9 @@ a.post:hover{box-shadow:var(--sh-h);transform:translateY(-3px)}
 }
 
 /* BOOKS */
-.bfeature{display:grid;grid-template-columns:240px minmax(0,1fr) 260px;gap:34px;align-items:start;
-  border:1px solid var(--g1);border-radius:24px;padding:34px;box-shadow:var(--sh);background:var(--w)}
+.bgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.bfeature{display:grid;grid-template-columns:152px minmax(0,1fr);gap:22px;align-items:start;
+  border:1px solid var(--g1);border-radius:24px;padding:26px;box-shadow:var(--sh);background:var(--w)}
 .bcover{aspect-ratio:3/4;border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.16);
   background-size:cover;background-position:center;display:flex;flex-direction:column;justify-content:flex-end;
   padding:22px;color:#fff;position:relative}
@@ -269,11 +270,11 @@ a.post:hover{box-shadow:var(--sh-h);transform:translateY(-3px)}
 .st-soon{background:var(--yellow-l);color:#C97600}
 .st-out{background:var(--green-l);color:#00A05C}
 .st-plan{background:var(--g1);color:var(--g5)}
-.binfo h3{font-size:27px;font-weight:800;letter-spacing:-.035em;line-height:1.3}
-.binfo .bsub{font-size:16px;font-weight:600;color:var(--g5);margin-top:8px;line-height:1.5}
+.binfo h3{font-size:21px;font-weight:800;letter-spacing:-.035em;line-height:1.35}
+.binfo .bsub{font-size:14.5px;font-weight:600;color:var(--g5);margin-top:7px;line-height:1.5}
 .binfo .bauth{font-size:14.5px;font-weight:700;color:var(--g6);margin-top:10px}
 .binfo .bmeta{font-size:13.5px;font-weight:600;color:var(--g4);margin-top:8px}
-.bpress{border:1px solid var(--g1);border-radius:16px;background:var(--g0);padding:20px}
+.bpress{grid-column:1 / -1;border:1px solid var(--g1);border-radius:16px;background:var(--g0);padding:18px 20px;margin-top:4px}
 .bpress .ph{font-size:12px;font-weight:800;color:var(--blue);margin-bottom:14px;letter-spacing:.02em}
 .bpress .pitem{display:block;padding:12px 0;border-bottom:1px solid var(--g2)}
 .bpress .pitem:last-child{border-bottom:0;padding-bottom:0}
@@ -282,7 +283,7 @@ a.post:hover{box-shadow:var(--sh-h);transform:translateY(-3px)}
 a.pitem:hover .pt{color:var(--blue)}
 .bpress .pd{font-size:12px;color:var(--g4);font-weight:600;margin-top:6px}
 .bpress .pempty{font-size:13px;color:var(--g4);font-weight:600;line-height:1.6}
-.binfo .bdesc{font-size:15px;color:var(--g6);font-weight:500;line-height:1.75;margin-top:18px;max-width:60ch}
+.binfo .bdesc{font-size:14.5px;color:var(--g6);font-weight:500;line-height:1.7;margin-top:16px}
 .btopics{margin-top:16px}
 .btopics i{font-style:normal;font-size:12.5px;font-weight:700;color:var(--g5);background:var(--g1);
   padding:5px 10px;border-radius:7px;margin:0 6px 6px 0;display:inline-block}
@@ -306,13 +307,12 @@ a.pitem:hover .pt{color:var(--blue)}
 .rt-5{background:var(--g1);color:var(--g6)}
 @media (max-width:900px){.booklist{grid-template-columns:1fr 1fr}}
 @media (max-width:1040px){
-  .bfeature{grid-template-columns:220px minmax(0,1fr);gap:28px}
-  .bpress{grid-column:1 / -1}
+  .bgrid{grid-template-columns:1fr}
+  .bfeature{grid-template-columns:200px minmax(0,1fr);gap:28px;padding:30px}
 }
 @media (max-width:760px){
-  .bfeature{grid-template-columns:1fr;gap:24px;padding:22px}
-  .bcover{max-width:220px}
-  .binfo h3{font-size:22px}
+  .bfeature{grid-template-columns:1fr;gap:22px;padding:22px}
+  .bcover{max-width:200px}
   .booklist{grid-template-columns:1fr}
 }
 
@@ -615,7 +615,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:44px 20px}
     </div>
     <div class="f-bot">
       <div><b>서동인</b> · 교육학 박사</div>
-      <div>v4.0 · 2026-10-12 · made by Dongin Seo</div>
+      <div>v4.1 · 2026-10-14 · made by Dongin Seo</div>
     </div>
   </div>
 </footer>
@@ -690,7 +690,7 @@ const DATA = {
      topics:["진로 설계","적성","AI 시대 역량","학부모","30일 프로그램"],
      links:[{t:"예스24에서 보기", url:"https://www.yes24.com/product/goods/197163280"}],
      resources:true},
-    {id:"vibe-edu", status:"출간예정", feature:false,
+    {id:"vibe-edu", status:"출간예정", feature:true,
      title:"교육현장에서 바로 써먹는 바이브코딩",
      subtitle:"200번 갈아엎은 교육학 박사의 Claude 레시피",
      authors:"서동인",
@@ -1178,19 +1178,19 @@ const CATCLS = {};
   const RTCLS = {};
   const valid = DATA.books.filter(b => b.title && !/^\(제목 미입력\)$/.test(b.title));
 
-  // 상단 알림 바
+  // 상단 알림 바 — 대표 도서 소식을 한 줄로
   const bar = $("#topcta");
-  const lead = valid.find(b => b.feature) || valid[0];
-  if(lead){
-    const label = lead.status === "출간" ? "신간 출간" : lead.status === "출간예정" ? "출간 예정" : "집필 중";
+  const leads = valid.filter(b => b.feature);
+  const heads = leads.length ? leads : (valid[0] ? [valid[0]] : []);
+  if(heads.length){
+    const label = b => b.status === "출간" ? "출간" : b.status === "출간예정" ? "출간 예정" : "집필 중";
     bar.innerHTML = "";
-    bar.append(document.createTextNode(`${label} · ${lead.title}`));
+    bar.append(document.createTextNode(heads.map(b => `${b.title} ${label(b)}`).join("  ·  ")));
     const a = el("a"); a.href = "#books"; a.textContent = "자세히 보기 →"; bar.appendChild(a);
   } else {
     bar.innerHTML = '조직의 교육체계, 지금 어디쯤 왔을까요? <a href="#consulting">컨설팅 문의 →</a>';
   }
 
-  // 대표 도서 카드
   function cover(b, cls){
     const c = el("div", cls);
     if(b.cover) c.style.backgroundImage = `url("${b.cover}")`;
@@ -1198,72 +1198,75 @@ const CATCLS = {};
     return c;
   }
 
+  // 대표 도서 카드 — 여러 권을 나란히
   const fb = $("#bookFeature");
-  if(lead){
-    const w = el("div","bfeature");
-    const cv = cover(lead,"bcover");
-    if(!lead.cover){
-      const t = el("div","ct"); t.textContent = lead.title.replace(/^\(가제\)\s*/,"");
-      const sb = el("div","cs"); sb.textContent = lead.subtitle || "";
-      cv.append(t,sb);
-    }
-    const info = el("div","binfo");
-    const st = el("span","bstatus "+(STCLS[lead.status]||"st-plan")); st.textContent = lead.status;
-    const h = el("h3"); h.textContent = lead.title;
-    info.append(st,h);
-    if(lead.subtitle){ const p2 = el("p","bsub"); p2.textContent = lead.subtitle; info.appendChild(p2); }
-    if(lead.authors){ const au = el("div","bauth"); au.textContent = lead.authors + " 지음"; info.appendChild(au); }
-    const meta = [lead.publisher, lead.pubDate, lead.pages].filter(Boolean).join("  ·  ");
-    if(meta){ const m = el("div","bmeta"); m.textContent = meta; info.appendChild(m); }
-    if(lead.desc){ const d = el("p","bdesc"); d.textContent = lead.desc; info.appendChild(d); }
-    if(lead.topics && lead.topics.length){
-      const tp = el("div","btopics");
-      lead.topics.forEach(x => { const i = el("i"); i.textContent = "#"+x; tp.appendChild(i); });
-      info.appendChild(tp);
-    }
-    const lk = el("div","blinks");
-    if(lead.links && lead.links.length){
-      lead.links.forEach((l,i) => {
-        const a = el("a", i ? "sec" : ""); a.href = l.url; a.target = "_blank"; a.rel = "noopener"; a.textContent = l.t;
-        lk.appendChild(a);
-      });
-    } else {
-      const a = el("a"); a.href = "#contact"; a.textContent = "출간 소식 받기";
-      a.onclick = () => setTimeout(() => {
-        $("#f-type").value = "기타";
-        $("#f-msg").value = `[${lead.title}] 출간 소식을 받고 싶습니다.\n\n`;
-      }, 400);
-      const sp = el("span","soonmsg"); sp.textContent = "구매 링크는 출간 시 공개됩니다";
-      lk.append(a,sp);
-    }
-    info.appendChild(lk);
+  if(heads.length){
+    const grid = el("div","bgrid");
+    heads.forEach(bk => {
+      const w = el("div","bfeature");
+      const cv = cover(bk,"bcover");
+      if(!bk.cover){
+        const t = el("div","ct"); t.textContent = bk.title.replace(/^\(가제\)\s*/,"");
+        const sb = el("div","cs"); sb.textContent = bk.subtitle || "";
+        cv.append(t,sb);
+      }
+      const info = el("div","binfo");
+      const st = el("span","bstatus "+(STCLS[bk.status]||"st-plan")); st.textContent = bk.status;
+      const h = el("h3"); h.textContent = bk.title;
+      info.append(st,h);
+      if(bk.subtitle){ const p2 = el("p","bsub"); p2.textContent = bk.subtitle; info.appendChild(p2); }
+      if(bk.authors){ const au = el("div","bauth"); au.textContent = bk.authors + " 지음"; info.appendChild(au); }
+      const meta = [bk.publisher, bk.pubDate, bk.pages].filter(Boolean).join("  ·  ");
+      if(meta){ const m = el("div","bmeta"); m.textContent = meta; info.appendChild(m); }
+      if(bk.desc){ const d = el("p","bdesc"); d.textContent = bk.desc; info.appendChild(d); }
+      if(bk.topics && bk.topics.length){
+        const tp = el("div","btopics");
+        bk.topics.forEach(x => { const i = el("i"); i.textContent = "#"+x; tp.appendChild(i); });
+        info.appendChild(tp);
+      }
+      const lk = el("div","blinks");
+      if(bk.links && bk.links.length){
+        bk.links.forEach((l,i) => {
+          const a = el("a", i ? "sec" : ""); a.href = l.url; a.target = "_blank"; a.rel = "noopener"; a.textContent = l.t;
+          lk.appendChild(a);
+        });
+      } else {
+        const a = el("a"); a.href = "#contact"; a.textContent = "출간 소식 받기";
+        a.onclick = () => setTimeout(() => {
+          $("#f-type").value = "기타";
+          $("#f-msg").value = `[${bk.title}] 출간 소식을 받고 싶습니다.\n\n`;
+        }, 400);
+        const sp = el("span","soonmsg"); sp.textContent = "구매 링크는 출간 시 공개됩니다";
+        lk.append(a,sp);
+      }
+      info.appendChild(lk);
+      w.append(cv,info);
 
-    // 관련 보도 · 기고
-    const press = (DATA.bookPress || []).filter(x => x.bookId === lead.id)
-                   .sort((a,b) => (b.date||"").localeCompare(a.date||""));
-    const pw = el("div","bpress");
-    const ph = el("div","ph"); ph.textContent = "관련 보도 · 기고"; pw.appendChild(ph);
-    if(press.length){
-      press.forEach(x => {
-        const a = x.url ? el("a","pitem") : el("div","pitem");
-        if(x.url){ a.href = x.url; a.target = "_blank"; a.rel = "noopener"; }
-        const m = el("span","pm"); m.textContent = x.media;
-        const t = el("div","pt"); t.textContent = x.title;
-        const d = el("div","pd"); d.textContent = (x.date||"").replace(/-/g,".");
-        a.append(m,t,d); pw.appendChild(a);
-      });
-    } else {
-      const e = el("div","pempty"); e.textContent = "등록된 보도 자료가 없습니다.";
-      pw.appendChild(e);
-    }
-
-    w.append(cv,info,pw); fb.appendChild(w);
+      // 관련 보도 · 기고 — 있을 때만
+      const press = (DATA.bookPress || []).filter(x => x.bookId === bk.id)
+                     .sort((a,b) => (b.date||"").localeCompare(a.date||""));
+      if(press.length){
+        const pw = el("div","bpress");
+        const ph = el("div","ph"); ph.textContent = "관련 보도 · 기고"; pw.appendChild(ph);
+        press.forEach(x => {
+          const a = x.url ? el("a","pitem") : el("div","pitem");
+          if(x.url){ a.href = x.url; a.target = "_blank"; a.rel = "noopener"; }
+          const m = el("span","pm"); m.textContent = x.media;
+          const t = el("div","pt"); t.textContent = x.title;
+          const d = el("div","pd"); d.textContent = (x.date||"").replace(/-/g,".");
+          a.append(m,t,d); pw.appendChild(a);
+        });
+        w.appendChild(pw);
+      }
+      grid.appendChild(w);
+    });
+    fb.appendChild(grid);
   } else {
     fb.innerHTML = '<div class="bempty">등록된 저서가 없습니다.</div>';
   }
 
   // 나머지 도서 목록
-  const others = valid.filter(b => b !== lead);
+  const others = valid.filter(b => heads.indexOf(b) === -1);
   if(others.length){
     $("#bookListWrap").hidden = false;
     const lb = $("#bookList");
