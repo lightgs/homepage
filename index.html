@@ -259,6 +259,7 @@ a.post:hover{box-shadow:var(--sh-h);transform:translateY(-3px)}
 
 /* BOOKS */
 .bgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.bgrid .bfeature{border-color:#DCE9FF}
 .bfeature{display:grid;grid-template-columns:152px minmax(0,1fr);gap:22px;align-items:start;
   border:1px solid var(--g1);border-radius:24px;padding:26px;box-shadow:var(--sh);background:var(--w)}
 .bcover{aspect-ratio:3/4;border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.16);
@@ -298,6 +299,11 @@ a.pitem:hover .pt{color:var(--blue)}
 .bcard .mini{width:72px;flex:0 0 72px;aspect-ratio:3/4;border-radius:9px;background:linear-gradient(140deg,#0F2647,#1B64DA);background-size:cover;background-position:center}
 .bcard h4{font-size:15.5px;font-weight:800;line-height:1.45}
 .bcard .m{font-size:12.5px;color:var(--g4);font-weight:600;margin-top:6px}
+.bcard .bd{font-size:13px;color:var(--g5);font-weight:500;line-height:1.6;margin-top:9px}
+.bcard .bgo{font-size:12.5px;font-weight:700;color:var(--blue);margin-top:10px}
+a.bcard{transition:box-shadow .2s,transform .2s}
+a.bcard:hover{box-shadow:var(--sh-h);transform:translateY(-2px)}
+.booklist{grid-template-columns:repeat(2,1fr)}
 .resnote{font-size:13.5px;color:var(--g4);font-weight:600;margin:-8px 0 16px;line-height:1.6}
 .rtype{font-size:12px;font-weight:800;padding:5px 10px;border-radius:7px;text-align:center;white-space:nowrap}
 .rt-1{background:var(--blue-l);color:var(--blue-d)}
@@ -480,7 +486,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:44px 20px}
     <div id="bookFeature"></div>
 
     <div id="bookListWrap" hidden>
-      <div class="h3" style="margin-top:48px">출간 도서</div>
+      <div class="h3" style="margin-top:48px">공저 · 이전 저서</div>
       <div class="booklist" id="bookList"></div>
     </div>
 
@@ -615,7 +621,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:44px 20px}
     </div>
     <div class="f-bot">
       <div><b>서동인</b> · 교육학 박사</div>
-      <div>v4.1 · 2026-10-14 · made by Dongin Seo</div>
+      <div>v4.2 · 2026-10-15 · made by Dongin Seo</div>
     </div>
   </div>
 </footer>
@@ -700,8 +706,17 @@ const DATA = {
      topics:["바이브코딩","Claude","교육도구 37개","프롬프트 원문","실습서"],
      links:[],
      resources:true}
+  ,
+    {id:"convergence", status:"출간", feature:false,
+     title:"융합인재와 대학교육",
+     subtitle:"", authors:"오헌석 외 17인 공저",
+     publisher:"에스엔유인사이트", pubDate:"2023년 2월", pages:"369쪽",
+     cover:"", coverGrad:"linear-gradient(150deg,#0E5A4A,#12806A)",
+     desc:"서울대학교의 융합교육 운영 사례를 분석해 학부 교양·전공·대학원 단계별 교육 목표와 교육과정 설계 전략을 정리한 공저서입니다.",
+     topics:["융합교육","대학교육","교육과정 설계"],
+     links:[{t:"교보문고 eBook", url:"https://ebook-product.kyobobook.co.kr/dig/epd/ebook/E000005137656"}],
+     resources:false}
   ],
-
   // 저서 관련 보도 · 기고 — bookId로 책과 연결
   bookPress: [
     {bookId:"career-note", date:"2026-10-02", media:"조선에듀",
@@ -1271,14 +1286,17 @@ const CATCLS = {};
     $("#bookListWrap").hidden = false;
     const lb = $("#bookList");
     others.forEach(b => {
-      const c = el("div","bcard");
+      const link = b.links && b.links[0];
+      const c = link ? el("a","bcard") : el("div","bcard");
+      if(link){ c.href = link.url; c.target = "_blank"; c.rel = "noopener"; }
       c.appendChild(cover(b,"mini"));
       const box = el("div");
-      const st = el("span","bstatus "+(STCLS[b.status]||"st-plan")); st.style.marginBottom = "8px"; st.textContent = b.status;
       const h = el("h4"); h.textContent = b.title;
-      box.append(st,h);
-      const meta = [b.publisher, b.pubDate].filter(Boolean).join(" · ");
+      box.appendChild(h);
+      const meta = [b.authors, b.publisher, b.pubDate].filter(Boolean).join(" · ");
       if(meta){ const m = el("div","m"); m.textContent = meta; box.appendChild(m); }
+      if(b.desc){ const d = el("div","bd"); d.textContent = b.desc; box.appendChild(d); }
+      if(link){ const g = el("div","bgo"); g.textContent = link.t + " →"; box.appendChild(g); }
       c.appendChild(box); lb.appendChild(c);
     });
   }
