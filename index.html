@@ -345,6 +345,20 @@ a.brow:hover{background:var(--g0)}
   .brow .bdate{text-align:left}
 }
 
+/* BOARD (논문) */
+.papers .brow,.papers .bhead{grid-template-columns:58px 1fr 132px}
+.papers .pyear{font-size:14px;font-weight:800;color:var(--navy)}
+.papers .ptitle{font-size:15.5px;font-weight:700;line-height:1.5;color:var(--navy)}
+.papers .ptitle span{font-size:13px;color:var(--g4);font-weight:500;display:block;margin-top:5px;line-height:1.6}
+.papers .ptitle b{font-weight:800;color:var(--g6)}
+.papers .pidx{display:flex;flex-direction:column;gap:5px;align-items:flex-end}
+.papers .pidx em{font-style:normal;font-size:11.5px;font-weight:800;color:var(--blue-d);background:var(--blue-l);padding:4px 9px;border-radius:6px;white-space:nowrap}
+.papers .pidx i{font-style:normal;font-size:12px;font-weight:600;color:var(--g4)}
+@media (max-width:640px){
+  .papers .brow,.papers .bhead{grid-template-columns:1fr}
+  .papers .pidx{align-items:flex-start;flex-direction:row;flex-wrap:wrap}
+}
+
 /* FAQ */
 details.faq{border:1px solid var(--g1);border-radius:16px;margin-bottom:10px;background:var(--w);box-shadow:var(--sh)}
 details.faq summary{list-style:none;cursor:pointer;padding:19px 22px;font-size:15.5px;font-weight:700;display:flex;justify-content:space-between;gap:14px;align-items:center}
@@ -542,6 +556,10 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:44px 20px}
     <div class="projgrid" id="projects"></div>
     <div style="margin-top:16px;text-align:center" id="projMore"></div>
 
+    <div class="h3" style="margin-top:44px">학술논문</div>
+    <p style="font-size:13.5px;color:var(--g4);font-weight:600;margin:-8px 0 16px">KCI 등재 8편 · 공저 포함 · 발행연도 역순</p>
+    <div class="board papers" id="papers"></div>
+
     <div class="card" style="margin-top:44px">
       <div class="h3" style="font-size:17px">연구 관심 주제</div>
       <div id="interests"></div>
@@ -623,7 +641,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:44px 20px}
     </div>
     <div class="f-bot">
       <div><b>서동인</b> · 교육학 박사</div>
-      <div>v4.5 · 2026-10-28 · made by Dongin Seo</div>
+      <div>v4.6 · 2026-10-28 · made by Dongin Seo</div>
     </div>
   </div>
 </footer>
@@ -786,6 +804,33 @@ const DATA = {
     {title:"명문대 학생들의 성장과 적성", sub:"학생 · 학부모", desc:"실제 데이터로 본 성장 경로와 적성의 관계를 다룹니다.", kws:["적성","명문대"]},
     {title:"좀 더 빠른 성공을 만들어낸 창업가들의 역량은 무엇이 다른가?", sub:"창업가 · 취준생", desc:"창업가 역량 연구를 바탕으로 성공 사례의 공통점을 분석합니다.", kws:["창업","창업역량"]},
     {title:"취업 레벨업 스킬!", sub:"취준생", desc:"취업 준비를 역량 관점에서 재구성하는 실전 워크숍입니다.", kws:["취업"]}
+  ],
+  // ───────── 학술논문 ─────────
+  papers: [
+    {year:"2021", title:"교감의 역량모형 및 진단도구 개발",
+     authors:"서동인, 최예슬, 이상훈, 오헌석", journal:"한국교육학연구", vol:"27권 1호", pages:"217-241",
+     index:["KCI등재"], cited:0},
+    {year:"2019", title:"학문분야별 평가인증제 운영에 관한 질적 사례 연구 — 한의학을 중심으로",
+     authors:"서동인, 신상우", journal:"대한한의학회지", vol:"40권 3호", pages:"21-34",
+     index:["KCI등재"], cited:1},
+    {year:"2017", title:"청소년 안전사고 대응역량 개발 및 진단도구 타당화",
+     authors:"성은모, 서동인", journal:"미래청소년학회지", vol:"14권 4호", pages:"41-67",
+     index:["KCI등재"], cited:4},
+    {year:"2017", title:"사범대학 예비교사의 교직 전문성 신장을 위한 프로그램 운영 및 효과",
+     authors:"전상학, 모경환, 오헌석, 김재우, 심현표, 서동인, 이상훈", journal:"The SNU Journal of Education Research", vol:"26권 1호", pages:"115-139",
+     index:["KCI등재"], cited:2},
+    {year:"2015", title:"Assessment and evaluation of national human resource development system competitiveness in emerging countries",
+     authors:"오헌석, 서동인, 김주석, 유상옥, 성희창", journal:"Asia Pacific Education Review", vol:"16권 3호", pages:"477-490",
+     index:["SSCI","SCOPUS","KCI등재"], cited:0},
+    {year:"2014", title:"과학기술분야 융합연구자의 교역지대 교류경험 및 의미",
+     authors:"서동인, 오헌석", journal:"아시아교육연구", vol:"15권 2호", pages:"111-140",
+     index:["KCI등재"], cited:6},
+    {year:"2012", title:"융합학문 어떻게 탄생하는가?",
+     authors:"오헌석, 김희정, 배형준, 서동인, 김한솔", journal:"교육문제연구", vol:"43호", pages:"51-82",
+     index:["KCI등재"], cited:36},
+    {year:"2011", title:"국가인적자원개발 경쟁력 지수 개발 및 타당화를 위한 탐색적 연구",
+     authors:"오헌석, 류혜현, 김국군, 최예슬, 서동인", journal:"아시아교육연구", vol:"12권 3호", pages:"247-277",
+     index:["KCI등재"], cited:4}
   ],
   projects: [
     {year:"2023", title:"시흥미래학교 연구", tag:"연구", org:"시흥시청"},
@@ -1375,6 +1420,39 @@ const CATCLS = {};
     });
   }
   draw();
+})();
+
+/* 학술논문 게시판 */
+(function(){
+  const box = $("#papers");
+  if(!box) return;
+  const list = (DATA.papers || []).slice()
+    .sort((a,b) => (b.year||"").localeCompare(a.year||""));
+  if(!list.length){
+    box.innerHTML = '<div class="bempty">등록된 논문이 아직 없습니다.</div>';
+    return;
+  }
+  const head = el("div","bhead");
+  ["연도","제목 · 저자 · 게재지","등재"].forEach(t => { const d = el("div"); d.textContent = t; head.appendChild(d); });
+  box.appendChild(head);
+  list.forEach(p => {
+    const row = el("div","brow");
+    const y = el("div","pyear"); y.textContent = p.year;
+    const t = el("div","ptitle"); t.textContent = p.title;
+    const meta = el("span");
+    (p.authors || "").split(/,\s*/).forEach((nm,i) => {
+      if(i) meta.appendChild(document.createTextNode(", "));
+      if(nm === "서동인"){ const b = el("b"); b.textContent = nm; meta.appendChild(b); }
+      else meta.appendChild(document.createTextNode(nm));
+    });
+    const tail = [p.journal, p.vol, p.pages ? p.pages + "쪽" : ""].filter(Boolean).join(" · ");
+    if(tail) meta.appendChild(document.createTextNode("  ·  " + tail));
+    t.appendChild(meta);
+    const ix = el("div","pidx");
+    (p.index || []).forEach(v => { const e = el("em"); e.textContent = v; ix.appendChild(e); });
+    if(p.cited > 0){ const c = el("i"); c.textContent = "피인용 " + p.cited; ix.appendChild(c); }
+    row.append(y,t,ix); box.appendChild(row);
+  });
 })();
 
 /* 기고 · 인터뷰 게시판 */
