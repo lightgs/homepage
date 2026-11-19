@@ -338,6 +338,8 @@ a.brow:hover{background:var(--g0)}
 .brow .btitle span{font-size:13px;color:var(--g4);font-weight:500;display:block;margin-top:4px}
 .brow .bdate{font-size:13px;color:var(--g4);font-weight:600;text-align:right}
 .bempty{padding:38px 22px;text-align:center;font-size:14px;color:var(--g4);font-weight:600;line-height:1.7}
+.brow[hidden],.lrow[hidden]{display:none !important}
+.brow.vlast,.lrow.vlast{border-bottom:0}
 @media (max-width:640px){
   .bhead{display:none}
   .brow{grid-template-columns:1fr;gap:7px;padding:16px 18px}
@@ -511,6 +513,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:44px 20px}
       <p class="resnote" id="resNote"></p>
       <div class="filters" id="resFilters"></div>
       <div class="board" id="bookRes"></div>
+      <div style="margin-top:14px;text-align:center" id="resMore"></div>
     </div>
   </section>
 
@@ -540,6 +543,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:44px 20px}
     <div class="h3">강의 이력</div>
     <div class="filters" id="lecFilters"></div>
     <div class="llist" id="lecList"></div>
+    <div style="margin-top:16px;text-align:center" id="lecMore"></div>
 
     <div class="h3" style="margin-top:48px">강의 주제</div>
     <div class="grid3" id="topics"></div>
@@ -585,6 +589,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:44px 20px}
 
     <div class="h3" style="margin-top:52px">기고 · 인터뷰</div>
     <div class="board" id="articles"></div>
+    <div style="margin-top:14px;text-align:center" id="artMore"></div>
   </section>
 
   <section id="faq">
@@ -641,7 +646,7 @@ footer{background:var(--navy);color:rgba(255,255,255,.6);padding:44px 20px}
     </div>
     <div class="f-bot">
       <div><b>서동인</b> · 교육학 박사</div>
-      <div>v4.7 · 2026-10-31 · made by Dongin Seo</div>
+      <div>v4.8 · 2026-11-19 · made by Dongin Seo</div>
     </div>
   </div>
 </footer>
@@ -994,6 +999,26 @@ const DATA = {
 /* ============================================================ */
 const $ = s => document.querySelector(s);
 const el = (t,c) => { const e = document.createElement(t); if(c) e.className = c; return e; };
+
+/* 목록 접기 · 더보기 — 렌더 직후 호출. rowSel 행만 step개까지 보이고 나머지는 숨김 */
+function limitRows(box, host, step, rowSel){
+  if(!box || !host) return;
+  host.innerHTML = "";
+  const rows = Array.from(box.querySelectorAll(rowSel));
+  rows.forEach(r => { r.hidden = false; r.classList.remove("vlast"); });
+  if(rows.length <= step) return;
+  let open = false;
+  const btn = el("button","moreBtn");
+  const apply = () => {
+    rows.forEach((r,i) => { r.hidden = !(open || i < step); r.classList.remove("vlast"); });
+    const vis = rows.filter(r => !r.hidden);
+    if(vis.length) vis[vis.length-1].classList.add("vlast");
+    btn.textContent = open ? "접기" : `전체 ${rows.length}건 보기`;
+  };
+  btn.onclick = () => { open = !open; apply(); if(!open) box.scrollIntoView({behavior:"smooth",block:"start"}); };
+  host.appendChild(btn);
+  apply();
+}
 const CATCLS = {};
 ["대학","기업교육","연수","에듀테크"].forEach((c,i) => CATCLS[c] = "c-"+(i+1));
 
@@ -1079,7 +1104,7 @@ const CATCLS = {};
     const rows = DATA.lectures
       .filter(l => active === "전체" || l.cat === active)
       .sort((a,b) => b.date.localeCompare(a.date));
-    if(!rows.length){ const e = el("div","empty"); e.textContent = "해당 분류의 강의가 없습니다."; lb.appendChild(e); return; }
+    if(!rows.length){ const e = el("div","empty"); e.textContent = "해당 분류의 강의가 없습니다."; lb.appendChild(e); $("#lecMore").innerHTML = ""; return; }
     rows.forEach(l => {
       const r = el("div","lrow");
       const d = el("div","date"); d.textContent = l.date.replace(/-/g,".");
@@ -1093,6 +1118,7 @@ const CATCLS = {};
       const c = el("span","cat "+(CATCLS[l.cat]||"c-1")); c.textContent = l.cat;
       r.append(d,m,c); lb.appendChild(r);
     });
+    limitRows(lb, $("#lecMore"), 5, ".lrow");
   }
   draw();
 })();
@@ -1406,6 +1432,7 @@ const CATCLS = {};
     const list = res.filter(r => (!activeBook || r.bookId === activeBook) && (active === "전체" || r.type === active));
     if(!list.length){
       box.innerHTML = '<div class="bempty">자료는 출간에 맞춰 순차 공개됩니다.</div>';
+      $("#resMore").innerHTML = "";
       return;
     }
     const head = el("div","bhead");
@@ -1420,6 +1447,7 @@ const CATCLS = {};
       const d = el("div","bdate"); d.textContent = (r.date||"").replace(/-/g,".");
       row.append(ty,t,d); box.appendChild(row);
     });
+    limitRows(box, $("#resMore"), 5, ".brow");
   }
   draw();
 })();
@@ -1479,6 +1507,7 @@ const CATCLS = {};
     const d = el("div","bdate"); d.textContent = (a.date || "").replace(/-/g,".");
     row.append(m,t,d); box.appendChild(row);
   });
+  limitRows(box, $("#artMore"), 5, ".brow");
 })();
 
 /* FAQ */
